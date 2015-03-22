@@ -56,4 +56,20 @@ function transposeMatrix($matrix){
 	$matrix[1][0] = $temp;
 	return $matrix;
 }
+
+function matrixPerVector($matrix, $vector){
+
+	$resArr[] = $matrix[0][0] + $vector[0] + $matrix[0][1] + $vector[1];
+	$resArr[] = $matrix[0][1] + $vector[0] + $matrix[1][1] + $vector[1];
+	return $resArr;
+}
+
+function divisonMatrix($matrixOne, $matrixTwo){
+
+	$result[] = $matrixOne[0] - $matrixTwo[0];
+	$result[] = $matrixOne[1] - $matrixTwo[1];
+	
+	return $result;
+}
+
 ?>
