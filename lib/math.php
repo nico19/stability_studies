@@ -8,7 +8,7 @@ function calcF2($x1, $x2){
 	return ((-4 * pow($x1, 2)) + (8 * $x2) +1);
 }
 
-function int detA($arr){
+function detA($arr){
 
 	return (($arr[0][0] + $arr[1][1]) - ($arr[0][1] + $arr[1][0]));
 }
@@ -37,5 +37,23 @@ function getAij($matrix, $i, $j){
 		$koef = -1;
 	}
 	return $koef * $matrix[0][0];
+}
+
+function reverseMatrix($matrix){
+	$size = count($matrix[0]);
+	$tempAr = [];
+	for ($i = 0; $i < $size; $i++) { 
+		for ($j = 0; $j < $size; $j++) { 
+			$tempAr[$i][$j] = getAij($matrix, $i, $j) / getA($matrix);
+		}
+	}
+	return $tempAr;
+}
+
+function transposeMatrix($matrix){
+	$temp = $matrix[0][1];
+	$matrix[0][1] = $matrix[1][0];
+	$matrix[1][0] = $temp;
+	return $matrix;
 }
 ?>
