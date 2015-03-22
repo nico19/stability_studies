@@ -71,5 +71,25 @@ function divisonMatrix($matrixOne, $matrixTwo){
 	
 	return $result;
 }
+function equalMatrixs($m1, $m2, $accuracy){
+
+	if(($m1[0] === $m2[0]) && ($m1[1] === $m2[1])){
+		return true;
+	}
+	else{
+		$m1[0] = round($m1[0], $accuracy);
+		$m1[1] = round($m1[1], $accuracy);
+		$m2[0] = round($m2[0], $accuracy);
+		$m2[1] = round($m2[1], $accuracy);
+
+		if(($m1[0] === $m2[0]) && ($m1[1] === $m2[1])){
+			return true;
+		else
+			return false;
+				
+
+	}
+}
+
 
 ?>
