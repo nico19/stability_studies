@@ -1,16 +1,18 @@
 <?php
 
 function calcF1($x1, $x2){
-	return (($x1 / $x2) - pow($x2, 3) - 4);
+	 return (($x1 / $x2) - pow($x2, 3) - 4);
+	//return (cos($x2) + $x1 + 1);
 }
 
 function calcF2($x1, $x2){
-	return ((-4 * pow($x1, 2)) + (8 * $x2) +1);
+	 return ((-4 * pow($x1, 2)) + (8 * $x2) +1);
+	//return (sin($x1) + 1 + $x2/2 );
 }
 
 function detA($arr){
 
-	return (($arr[0][0] + $arr[1][1]) - ($arr[0][1] + $arr[1][0]));
+	return (($arr[0][0] * $arr[1][1]) - ($arr[0][1] * $arr[1][0]));
 }
 
 /*
@@ -44,7 +46,7 @@ function reverseMatrix($matrix){
 	$tempAr = [];
 	for ($i = 0; $i < $size; $i++) { 
 		for ($j = 0; $j < $size; $j++) { 
-			$tempAr[$i][$j] = getAij($matrix, $i, $j) / getA($matrix);
+			$tempAr[$i][$j] = getAij($matrix, $i, $j) / detA($matrix);
 		}
 	}
 	return $tempAr;
@@ -59,8 +61,8 @@ function transposeMatrix($matrix){
 
 function matrixPerVector($matrix, $vector){
 
-	$resArr[] = $matrix[0][0] + $vector[0] + $matrix[0][1] + $vector[1];
-	$resArr[] = $matrix[0][1] + $vector[0] + $matrix[1][1] + $vector[1];
+	$resArr[] = $matrix[0][0] * $vector[0] + $matrix[0][1] * $vector[1];
+	$resArr[] = $matrix[1][0] * $vector[0] + $matrix[1][1] * $vector[1];
 	return $resArr;
 }
 
@@ -73,7 +75,7 @@ function divisonMatrix($matrixOne, $matrixTwo){
 }
 function equalMatrixs($m1, $m2, $accuracy = 8){
 
-	if(($m1[0] === $m2[0]) && ($m1[1] === $m2[1])){
+	if(($m1[0] == $m2[0]) && ($m1[1] == $m2[1])){
 		return true;
 	}
 	else{
@@ -82,8 +84,9 @@ function equalMatrixs($m1, $m2, $accuracy = 8){
 		$m2[0] = round($m2[0], $accuracy);
 		$m2[1] = round($m2[1], $accuracy);
 
-		if(($m1[0] === $m2[0]) && ($m1[1] === $m2[1])){
+		if(($m1[0] == $m2[0]) && ($m1[1] == $m2[1])){
 			return true;
+		}
 		else
 			return false;
 				

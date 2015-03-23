@@ -26,6 +26,7 @@ for ($i=0; $i < 2000; $i++) {
 	// $r1x2 = -2 * sin($arX[$lastIndex][1]) * $arX[$lastIndex][0];
 	// $r2x1 = -1;
 	// $r2x2 = 3 * pow($arX[$lastIndex][1], 2);
+	
 	// з цих значень побудую матрицю Якобі
 	$Yak = [
 				[$r1x1, $r1x2],
@@ -62,14 +63,47 @@ for ($i=0; $i < 2000; $i++) {
 		if(equalMatrixs($value, $newX, 8))
 		{
 			$check = true;
-			echo "Ура!!! Iteration #$i";
-			exit();
+			echo "<br>Точка спокою знайдена на ітерації #$i<br> Її значення:";
+			var_dump($newX);
 		}
 	}
 	if(!$check){
 		$arX[] = $newX;
 	}
-	var_dump($newX);
+	if($check){
+		$finalPoint = $newX;
+		break;
+	}
+}
+
+
+//якщо ми знайшли точку спокою 
+if($finalPoint){
+
+	//обчислюю a, b, c, d
+	$a = 1/$finalPoint[1];
+	$b = -(3 * pow($finalPoint[1], 4) + $finalPoint[0]) / pow($finalPoint[1], 2);
+	$c = -8 * $finalPoint[0];
+	$d = 8;
+
+	//знайдемо коефіцієнти квадратичниго рівняння
+	$koefA = 1;
+	$koefB = -($a + $d);
+	$koefC = $a * $d - $b * $c;
+	//обчислимо дискримінант
+	$dec = pow($koefA, 2) - 4 * $koefA * $koefC;
+
+	$lambda1 = (-$koefB + sqrt($dec)) / 2 * $koefA;
+	$lambda2 = (-$koefB - sqrt($dec)) / 2 * $koefA; 
+	//виведемо Лямбди
+	echo "<br>&lambda;1 = $lambda1";
+	echo "<br>&lambda;2 = $lambda2";
+	//перемножимо лямбди 
+	$lambda12 = $lambda1 * $lambda2;
+	if($lambda12 > 0)
+		echo "<br>Тип точки спокою - вузол";
+	if($lambda12 < 0)
+		echo "<br>Тип точки спокою - сідло";
 }
 
 ?>
